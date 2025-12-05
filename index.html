@@ -82,7 +82,7 @@
 
       <timeline-item title="Project Title 1"
         description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-        date="2023" link="#" images='[
+        date="2023" technologies="godot" link="#" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
@@ -91,7 +91,7 @@
 
       <timeline-item title="Project Title 2"
         description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-        date="2023" link="#" images='[
+        date="2023" link="#" technologies="typescript,figma,cypress" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
@@ -108,79 +108,8 @@
     </div>
   </section>
   <section>
-    <div class="badge-list">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"
-        alt="CSS3 Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"
-        alt="Java Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"
-        alt="HTML5 Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
-        alt="JavaScript Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white"
-        alt="Markdown Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
-        alt="TypeScript Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white"
-        alt="Chart.js Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"
-        alt="Express.js Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/esbuild-%23FFCF00.svg?style=for-the-badge&logo=esbuild&logoColor=black"
-        alt="Esbuild Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"
-        alt="NodeJS Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"
-        alt="Styled Components Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white"
-        alt="Spring Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"
-        alt="Vite Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D"
-        alt="Vue.js Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"
-        alt="MySQL Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white"
-        alt="Figma Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"
-        alt="Git Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white"
-        alt="GitLab Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
-        alt="GitHub Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e"
-        alt="Cypress Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/-Vitest-252529?style=for-the-badge&logo=vitest&logoColor=FCC72B"
-        alt="Vitest Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"
-        alt="Docker Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white"
-        alt="ESLint Badge">
-      <img class="tech-badge"
-        src="https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine"
-        alt="Godot Engine Badge">
+    <div id="badge-list">
+      
     </div>
     <p class="d-inline-flex gap-1">
       <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
@@ -209,13 +138,60 @@
     crossorigin="anonymous"></script>
 
   <script>
+    // Map of tech name -> badge info
+    const TECH_BADGES = {
+      "html5": { src: "https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white", alt: "HTML5", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
+      "css3": { src: "https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white", alt: "CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+      "bootstrap": { src: "https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white", alt: "Bootstrap", link: "https://getbootstrap.com/" },
+      "tailwindcss": { src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white", alt: "TailwindCSS", link: "https://tailwindcss.com/" },
+      "vite": { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
+      "javascript": { src: "https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black", alt: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+      "typescript": { src: "https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white", alt: "TypeScript", link: "https://www.typescriptlang.org/" },
+      "java": { src: "https://img.shields.io/badge/-Java-007396?logo=openjdk&logoColor=white", alt: "Java", link: "https://www.java.com/" },
+      "vuejs": { src: "https://img.shields.io/badge/-Vue.js-42b883?logo=vuedotjs&logoColor=white", alt: "Vue.js", link: "https://vuejs.org/" },
+      "springboot": { src: "https://img.shields.io/badge/-Spring%20Boot-6DB33F?logo=springboot&logoColor=white", alt: "Spring Boot", link: "https://spring.io/projects/spring-boot" },
+      "vscode": { src: "https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white", alt: "VS Code", link: "https://code.visualstudio.com/" },
+      "intellij": { src: "https://img.shields.io/badge/-IntelliJ%20IDEA-000000?logo=intellijidea&logoColor=white", alt: "IntelliJ IDEA", link: "https://www.jetbrains.com/idea/" },
+      "mysql": { src: "https://img.shields.io/badge/mysql-4479A1.svg?logo=mysql&logoColor=white", alt: "MySQL", link: "https://www.mysql.com/" },
+      "figma": { src: "https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&logoColor=white", alt: "Figma", link: "https://www.figma.com/" },
+      "git": { src: "https://img.shields.io/badge/git-%23F05033.svg?logo=git&logoColor=white", alt: "Git", link: "https://git-scm.com/" },
+      "gitlab": { src: "https://img.shields.io/badge/gitlab-%23181717.svg?logo=gitlab&logoColor=white", alt: "GitLab", link: "https://gitlab.com/" },
+      "github": { src: "https://img.shields.io/badge/github-%23121011.svg?logo=github&logoColor=white", alt: "GitHub", link: "https://github.com/" },
+      "godot": { src: "https://img.shields.io/badge/GODOT-%23FFFFFF.svg?logo=godot-engine", alt: "Godot Engine", link: "https://godotengine.org/" },
+      "esbuild": { src: "https://img.shields.io/badge/esbuild-%23FFCF00.svg?logo=esbuild&logoColor=black", alt: "Esbuild", link: "https://esbuild.github.io/" },
+      "nodejs": { src: "https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white", alt: "NodeJS", link: "https://nodejs.org/" },
+      "cypress": { src: "https://img.shields.io/badge/-cypress-%23E5E5E5?logo=cypress&logoColor=058a5e", alt: "Cypress", link: "https://www.cypress.io/" },
+      "vitest": { src: "https://img.shields.io/badge/-Vitest-252529?logo=vitest&logoColor=FCC72B", alt: "Vitest", link: "https://vitest.dev/" },
+      "eslint": { src: "https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white", alt: "ESLint", link: "https://eslint.org/" },
+      "markdown": { src: "https://img.shields.io/badge/markdown-%23000000.svg?logo=markdown&logoColor=white", alt: "Markdown", link: "https://www.markdownguide.org/" },
+      "mermaid": { src: "https://img.shields.io/badge/mermaid-008B8B.svg?logo=mermaid&logoColor=white", alt: "Mermaid", link: "https://mermaid.js.org/" }
+    };
+
+
+    // render the full tech stack
+    const techStackContainer = document.getElementById("badge-list");
+    if (techStackContainer) {
+      for (const key in TECH_BADGES) {
+        const b = TECH_BADGES[key];
+        const img = document.createElement("img");
+        img.src = b.src;
+        img.alt = b.alt;
+        img.className = "tech-badge";
+        techStackContainer.appendChild(img);
+      }
+    }
+
+
+    // ----- TIMELINE PROJECT ITEMS -----------
     class TimelineItem extends HTMLElement {
       connectedCallback() {
+        // Get attributes
         const title = this.getAttribute("title") || "";
         const description = this.getAttribute("description") || "";
         const date = this.getAttribute("date") || "";
         const link = this.getAttribute("link") || "#";
 
+        // parse images JSON
         let images = [];
         try {
           images = JSON.parse(this.getAttribute("images") || "[]");
@@ -224,6 +200,15 @@
         }
 
         const carouselId = "carousel-" + Math.random().toString(36).slice(2);
+
+        // parse comma-separated tech names/badges
+        const techAttr = this.getAttribute("technologies") || "";
+        const techNames = techAttr.split(",").map(t => t.trim()).filter(Boolean);
+        const techHtml = techNames.map(name => {
+          const badge = TECH_BADGES[name.toLowerCase()];
+          if (badge) return `<img src="${badge.src}" alt="${badge.alt}" />`;
+          return "";
+        }).join("");
 
         this.innerHTML = `
       <div class="timeline-item">
@@ -235,6 +220,7 @@
               <p class="project-description">${description}</p>
               <p class="project-date">${date}</p>
               <a href="${link}" class="project-link">View Project →</a>
+              ${techHtml ? `<div class="project-tech">${techHtml}</div>` : ""}
             </div>
 
             <div id="${carouselId}" class="carousel slide">
