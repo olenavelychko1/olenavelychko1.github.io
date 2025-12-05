@@ -39,31 +39,51 @@
     <h2>Projects Timeline</h2>
     <div class="timeline">
 
-      <timeline-item title="Project Title 1"
+      <!-- ADD Cypress later -->
+      <timeline-item title="Election Results Website"
         description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-        date="2023" technologies="godot" link="#" images='[
+        date="September 2025 - now" technologies="html5, css3, java, typescript, vuejs, springboot, docker, chartjs, tailwindcss, vite, figma, gitlab, intellij" link="#" images='[
+        "./img/project 3/example.png",
+        "./img/project 3/example.png",
+        "./img/project 3/example.png"
+      ]'/>
+      </timeline-item>
+
+      <timeline-item title="Game Webshop Website"
+        description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+        date="April 2025 - July 2025" link="#" technologies="html5, css3, typescript, express, vitest, mysql, vite, esbuild, docker, figma, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
       </timeline-item>
 
-      <timeline-item title="Project Title 2"
+      <timeline-item title="Webgame"
         description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-        date="2023" link="#" technologies="typescript,figma,cypress" images='[
+        date="February 2025 - April 2025" link="#" technologies="html5, css3, typescript, figma, eslint, esbuild, vite, express, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
       </timeline-item>
 
-      <timeline-item title="Project Title 3"
+      <timeline-item title="Programming Student Forum"
         description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-        date="2023" link="#" images='[
+        date="October 2024 - January 2024" link="#" technologies="html5, css3, typescript, nodejs, mysql, eslint, vite, figma, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
+      </timeline-item>
+
+      <timeline-item title="Dokkie - Outing Planner WebApp"
+        description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+        date="September 2024 - late October 2024" link="#" technologies="html5, css3, typescript, eslint, vite, figma, gitlab, vscode" images='[
+        "./img/project 3/example.png",
+        "./img/project 3/example.png",
+        "./img/project 3/example.png"
+      ]'>
+      </timeline-item>
     </div>
   </section>
   <section>
@@ -71,10 +91,6 @@
 
     </div>
     <p class="d-inline-flex gap-1">
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-        aria-controls="collapseExample">
-        Link with href
-      </a>
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
         aria-expanded="false" aria-controls="collapseExample">
         Button with data-bs-target
@@ -101,17 +117,19 @@
     const TECH_BADGES = {
       "html5": { src: "https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white", alt: "HTML5", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
       "css3": { src: "https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white", alt: "CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-      "bootstrap": { src: "https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white", alt: "Bootstrap", link: "https://getbootstrap.com/" },
-      "tailwindcss": { src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white", alt: "TailwindCSS", link: "https://tailwindcss.com/" },
-      "vite": { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
       "javascript": { src: "https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black", alt: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
       "typescript": { src: "https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white", alt: "TypeScript", link: "https://www.typescriptlang.org/" },
       "java": { src: "https://img.shields.io/badge/-Java-007396?logo=openjdk&logoColor=white", alt: "Java", link: "https://www.java.com/" },
       "vuejs": { src: "https://img.shields.io/badge/-Vue.js-42b883?logo=vuedotjs&logoColor=white", alt: "Vue.js", link: "https://vuejs.org/" },
+      "chartjs": { src: "https://img.shields.io/badge/chart.js-F5788D.svg?logo=chart.js&logoColor=white", alt: "Chart.js", link: "https://www.chartjs.org/" },
+      "express": { src: "https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB", alt: "Express", link: "https://expressjs.com/" },
       "springboot": { src: "https://img.shields.io/badge/-Spring%20Boot-6DB33F?logo=springboot&logoColor=white", alt: "Spring Boot", link: "https://spring.io/projects/spring-boot" },
+      "bootstrap": { src: "https://img.shields.io/badge/-Bootstrap-7952B3?logo=bootstrap&logoColor=white", alt: "Bootstrap", link: "https://getbootstrap.com/" },
+      "tailwindcss": { src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white", alt: "TailwindCSS", link: "https://tailwindcss.com/" },
       "vscode": { src: "https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white", alt: "VS Code", link: "https://code.visualstudio.com/" },
       "intellij": { src: "https://img.shields.io/badge/-IntelliJ%20IDEA-000000?logo=intellijidea&logoColor=white", alt: "IntelliJ IDEA", link: "https://www.jetbrains.com/idea/" },
       "mysql": { src: "https://img.shields.io/badge/mysql-4479A1.svg?logo=mysql&logoColor=white", alt: "MySQL", link: "https://www.mysql.com/" },
+      "docker": { src: "https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white", alt: "Docker", link: "https://www.docker.com/" },
       "figma": { src: "https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&logoColor=white", alt: "Figma", link: "https://www.figma.com/" },
       "git": { src: "https://img.shields.io/badge/git-%23F05033.svg?logo=git&logoColor=white", alt: "Git", link: "https://git-scm.com/" },
       "gitlab": { src: "https://img.shields.io/badge/gitlab-%23181717.svg?logo=gitlab&logoColor=white", alt: "GitLab", link: "https://gitlab.com/" },
@@ -119,6 +137,7 @@
       "godot": { src: "https://img.shields.io/badge/GODOT-%23FFFFFF.svg?logo=godot-engine", alt: "Godot Engine", link: "https://godotengine.org/" },
       "esbuild": { src: "https://img.shields.io/badge/esbuild-%23FFCF00.svg?logo=esbuild&logoColor=black", alt: "Esbuild", link: "https://esbuild.github.io/" },
       "nodejs": { src: "https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white", alt: "NodeJS", link: "https://nodejs.org/" },
+      "vite": { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
       "cypress": { src: "https://img.shields.io/badge/-cypress-%23E5E5E5?logo=cypress&logoColor=058a5e", alt: "Cypress", link: "https://www.cypress.io/" },
       "vitest": { src: "https://img.shields.io/badge/-Vitest-252529?logo=vitest&logoColor=FCC72B", alt: "Vitest", link: "https://vitest.dev/" },
       "eslint": { src: "https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white", alt: "ESLint", link: "https://eslint.org/" },
