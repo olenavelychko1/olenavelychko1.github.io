@@ -85,9 +85,9 @@
           date="September 2025 - now"
           technologies="html5, css3, java, typescript, vuejs, springboot, docker, chartjs, tailwindcss, vite, figma, gitlab, intellij"
           link="#" images='[
-        "./img/project 3/example.png",
-        "./img/project 3/example.png",
-        "./img/project 3/example.png"
+        "./img/blok 5/elections-page1.jpeg",
+        "./img/blok 5/elections-page2.jpeg",
+        "./img/blok 5/elections-page3.png"
       ]' />
         </timeline-item>
 
@@ -269,23 +269,25 @@
               <div id="${carouselId}" class="carousel slide">
                 <div class="carousel-inner">
                 ${images
-              .map(
-                (src, index) => `
-                    <div class="carousel-item ${index === 0 ? "active" : ""}">
-                      <img src="${src}" class="d-block w-100" alt="project image">
-                    </div>`
-              )
-              .join("")}
+                .map(
+                  (src, index) => `
+                      <div class="carousel-item ${index === 0 ? "active" : ""}">
+                        <a href="${src}" target="_blank" rel="noopener noreferrer" title="Click to open in full view">
+                          <img src="${src}" alt="project image">
+                        </a>
+                      </div>`
+                )
+                .join("")}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
             `) : ''}
             </div>
           </div>
