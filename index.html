@@ -47,21 +47,23 @@
         <div class="bio">
           <h2 class="theme-default-text">About me</h2>
           <p class="theme-default-text">
-            Hi! I'm Lena, a second-year HBO-ICT Software Engineering student at Amsterdam University of Applied Sciences <b>(Hogeschool van Amsterdam)</b>, Dutch language course. I love
+            Hi! I'm Lena, a second-year HBO-ICT Software Engineering student at Amsterdam University of Applied Sciences
+            <b>(Hogeschool van Amsterdam)</b>, Dutch language course. I love
             building interactive web projects, experimenting across front-end and back-end, learning new skills and
             improving with every
             project I work on. I enjoy collaborating and get a lot of energy from turning ideas into something real.
           </p>
         </div>
         <aside class="meta">
-          <h3 style="margin-top:0" class="theme-default-text">Quick facts</h3>
+          <h3 style="margin-top:0" class="theme-default-text">Short info about me</h3>
           <ul style="padding-left:1rem; color:var(--muted)">
             <li>Currently building an Election Results Website (Vue / Spring Boot)</li>
             <li>HBO-ICT Software Engineering student (2nd year)</li>
             <li>Based in Zaandam, the Netherlands</li>
             <li>Very fluent in English, native in Russian and Ukrainian; mostly fluent in Dutch (B2-C1)</li>
             <li>Enjoy drawing, gaming and exploring new tech</li>
-            <li>Planning to continue living and working in the Netherlands, even after finishing the study</li>
+            <li>Plans for future: to live and work in the Netherlands upon graduation, full integration into the society
+            </li>
           </ul>
         </aside>
       </div>
@@ -80,64 +82,66 @@
 
     <section class="projects-section">
       <h2 class="projects-title">Projects Timeline</h2>
-      <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: some of the screenshots have varying height, so I advise you to click on the pictures to view them in full view!</h4>
-      <div class="timeline" id="timeline-container">
+      <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: some
+        of the screenshots have varying height, so I advise you to click on the pictures to view them in full view!</h4>
+        <div class="timeline" id="timeline-container">
 
-        <!-- ADD Cypress later -->
-        <timeline-item title="Election Results Website"
-          description="A full-stack web application that visualizes election results using responsive Vue components and a Spring Boot backend. I built the frontend with reusable, mobile-friendly components and implemented the backend with RESTful APIs for constituencies, candidates, and results. I was responsible for parsing official XML election data using Transformers and mapping it into structured Java models, designing the database, and ensuring reliability through unit tests. I'm currently expanding the platform with an admin dashboard to manage user actions on the forum and adding security features.
-"
-          date="September 2025 - now"
-          technologies="html5, css3, java, typescript, vuejs, springboot, docker, chartjs, tailwindcss, vite, figma, gitlab, intellij"
-          link="https://github.com/olenavelychko1/blok-5-election-website" images='[
+          <!-- ADD Cypress later -->
+          <timeline-item title="Election Results Website"
+            description="A full-stack web application that visualizes election results using responsive Vue components and a Spring Boot backend. I built the frontend with reusable, mobile-friendly components and implemented the backend with RESTful APIs for constituencies and results. I was responsible for parsing a part of the official XML election data using Transformers and mapping it into structured Java models, designing a part of the database, and ensuring reliability through unit tests. I'm currently expanding the platform with an admin dashboard to manage user actions on the forum and adding security features."
+            date="September 2025 - now"
+            technologies="html5, css3, java, typescript, vuejs, springboot, docker, chartjs, tailwindcss, vite, postman, figma, gitlab, intellij"
+            link="https://github.com/olenavelychko1/blok-5-election-website" images='[
         "./img/blok 5/elections-page1.jpeg",
         "./img/blok 5/elections-page2.jpeg",
         "./img/blok 5/elections-page3.png",
         "./img/blok 5/elections-page4.jpeg"
       ]' />
-        </timeline-item>
+          </timeline-item>
 
-        <timeline-item title="Game Webshop Website"
-          description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-          date="April 2025 - July 2025" link="#"
-          technologies="html5, css3, typescript, express, vitest, mysql, vite, esbuild, docker, figma, gitlab, vscode"
-          images='[
+          <timeline-item title="Game Webshop Website"
+            description="A web-based game webshop built with TypeScript, Express, MySQL, and modern frontend tooling. I implemented the game details page, review functionality, and navbar, ensuring the website closely matches the Figma design. I connected an open-source translation API via Docker to enable multilingual support and deployed it to make the site accessible in multiple languages. The game details page dynamically pulls data from the database, providing users with up-to-date product and review information. I also set up unit tests using Vitest to ensure code reliability and maintainability, with the use of Postman"
+            date="April 2025 - July 2025" link="https://github.com/olenavelychko1/blok4-game-webshop"
+            technologies="html5, css3, typescript, express, vitest, mysql, vite, esbuild, docker, postman, figma, gitlab, vscode"
+            images='[
+        "./img/blok 4/screenshot2.png",
+        "./img/blok 4/screenshot4.png",
+        "./img/blok 4/screenshot5.png",
+        "./img/blok 4/screenshot1.png",
+        "./img/blok 4/screenshot3.png"
+      ]'>
+          </timeline-item>
+
+          <timeline-item title="Webgame"
+            description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+            date="February 2025 - April 2025" link="#"
+            technologies="html5, css3, typescript, figma, esbuild, vite, express, postman, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
-        </timeline-item>
+          </timeline-item>
 
-        <timeline-item title="Webgame"
-          description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-          date="February 2025 - April 2025" link="#"
-          technologies="html5, css3, typescript, figma, esbuild, vite, express, gitlab, vscode" images='[
+          <timeline-item title="Programming Student Forum"
+            description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+            date="October 2024 - January 2024" link="#"
+            technologies="html5, css3, typescript, nodejs, mysql, vite, figma, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
-        </timeline-item>
+          </timeline-item>
 
-        <timeline-item title="Programming Student Forum"
-          description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-          date="October 2024 - January 2024" link="#"
-          technologies="html5, css3, typescript, nodejs, mysql, vite, figma, gitlab, vscode" images='[
+          <timeline-item title="Dokkie - Outing Planner WebApp"
+            description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+            date="September 2024 - late October 2024" link="#"
+            technologies="html5, css3, typescript, vite, figma, gitlab, vscode" images='[
         "./img/project 3/example.png",
         "./img/project 3/example.png",
         "./img/project 3/example.png"
       ]'>
-        </timeline-item>
-
-        <timeline-item title="Dokkie - Outing Planner WebApp"
-          description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
-          date="September 2024 - late October 2024" link="#"
-          technologies="html5, css3, typescript, vite, figma, gitlab, vscode" images='[
-        "./img/project 3/example.png",
-        "./img/project 3/example.png",
-        "./img/project 3/example.png"
-      ]'>
-        </timeline-item>
-      </div>
+          </timeline-item>
+        </div>
     </section>
     <section class="card">
       <h2 class="theme-default-text">Tech stack</h2>
@@ -194,6 +198,7 @@
       "gitlab": { src: "https://img.shields.io/badge/gitlab-%23181717.svg?logo=gitlab&logoColor=white", alt: "GitLab", link: "https://gitlab.com/" },
       "github": { src: "https://img.shields.io/badge/github-%23121011.svg?logo=github&logoColor=white", alt: "GitHub", link: "https://github.com/" },
       "godot": { src: "https://img.shields.io/badge/GODOT-%23FFFFFF.svg?logo=godot-engine", alt: "Godot Engine", link: "https://godotengine.org/" },
+      "postman": { src: "https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white", alt: "Postman", link: "https://www.postman.com/" },
       "esbuild": { src: "https://img.shields.io/badge/esbuild-%23FFCF00.svg?logo=esbuild&logoColor=black", alt: "Esbuild", link: "https://esbuild.github.io/" },
       "nodejs": { src: "https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white", alt: "NodeJS", link: "https://nodejs.org/" },
       "vite": { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
@@ -275,15 +280,15 @@
               <div id="${carouselId}" class="carousel slide">
                 <div class="carousel-inner">
                 ${images
-                .map(
-                  (src, index) => `
+              .map(
+                (src, index) => `
                       <div class="carousel-item ${index === 0 ? "active" : ""}">
                         <a href="${src}" target="_blank" rel="noopener noreferrer" title="Click to open in full view">
                           <img src="${src}" alt="project image">
                         </a>
                       </div>`
-                )
-                .join("")}
+              )
+              .join("")}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon"></span>
