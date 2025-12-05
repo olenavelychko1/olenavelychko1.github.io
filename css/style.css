@@ -192,6 +192,11 @@ footer {
   color: #93f9b9;
 }
 
-
+.tech-badge {
+  text-decoration: none; /* Remove underline from links in tech badges */
+}
+.tech-badge img:hover {
+  opacity: 0.8;
+}
 
 

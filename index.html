@@ -109,7 +109,7 @@
   </section>
   <section>
     <div id="badge-list">
-      
+
     </div>
     <p class="d-inline-flex gap-1">
       <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
@@ -173,11 +173,19 @@
     if (techStackContainer) {
       for (const key in TECH_BADGES) {
         const b = TECH_BADGES[key];
+        const a = document.createElement("a");
+        a.href = b.link;
+        a.target = "_blank";
+        a.rel = "noreferrer";
+        a.className = "tech-badge";
+
         const img = document.createElement("img");
         img.src = b.src;
         img.alt = b.alt;
-        img.className = "tech-badge";
-        techStackContainer.appendChild(img);
+        img.style.margin = "0.25rem";
+
+        a.appendChild(img);
+        techStackContainer.appendChild(a);
       }
     }
 
@@ -206,7 +214,9 @@
         const techNames = techAttr.split(",").map(t => t.trim()).filter(Boolean);
         const techHtml = techNames.map(name => {
           const badge = TECH_BADGES[name.toLowerCase()];
-          if (badge) return `<img src="${badge.src}" alt="${badge.alt}" />`;
+          if (badge) return `<a class="tech-badge" href="${badge.link}" target="_blank" rel="noreferrer">
+                                <img src="${badge.src}" alt="${badge.alt}" />
+                              </a>`;
           return "";
         }).join("");
 
