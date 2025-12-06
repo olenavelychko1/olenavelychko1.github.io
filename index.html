@@ -104,32 +104,41 @@
             date="April 2025 - July 2025" link="https://github.com/olenavelychko1/blok4-game-webshop"
             technologies="html5, css3, typescript, express, vitest, mysql, vite, esbuild, docker, postman, figma, gitlab, vscode"
             images='[
-        "./img/blok 4/screenshot2.png",
-        "./img/blok 4/screenshot4.png",
-        "./img/blok 4/screenshot5.png",
-        "./img/blok 4/screenshot1.png",
-        "./img/blok 4/screenshot3.png"
-      ]'>
+              "./img/blok 4/screenshot2.png",
+              "./img/blok 4/screenshot4.png",
+              "./img/blok 4/screenshot5.png",
+              "./img/blok 4/screenshot1.png",
+              "./img/blok 4/screenshot3.png"
+            ]'>
           </timeline-item>
 
-          <timeline-item title="Webgame"
-            description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
+          <timeline-item title="Webgame: The Lost City of Azarath"
             date="February 2025 - April 2025" link="#"
             technologies="html5, css3, typescript, figma, esbuild, vite, express, postman, gitlab, vscode" images='[
-        "./img/project 3/example.png",
-        "./img/project 3/example.png",
-        "./img/project 3/example.png"
-      ]'>
+              "./img/blok 3/screenshot1.png",
+              "./img/blok 3/screenshot2.png"
+            ]'>
+              <div class="project-description">
+              A web-based game called "The Lost City of Azarath," built with TypeScript, HTML5, CSS3, and Express. 
+              This has been a huge passion project for me and my team — in fact, it was my favorite project throughout the entire study. 
+              We learned a lot about game development during this period and faced challenges that pushed our skills, 
+              but in the end we won a school award for "The Most Complete Experience" and were one of the most liked games in the first-year classes.  
+                  <br/>
+              I personally contributed by developing the reading component, creating the dynamic sound system that changes room music and ambient sounds, 
+              implementing the arrow navigation component, designing around 60% of the UI, building most of the game rooms, 
+              and acting as the main bug fixer for the team. This project helped me significantly improve my TypeScript and HTML skills, 
+              strengthened my problem-solving abilities, and deepened my passion for game development.
+            </div>
           </timeline-item>
 
           <timeline-item title="Programming Student Forum"
             description="Share details about your third project. Highlight the challenges faced, solutions implemented, and any recognitions received."
             date="October 2024 - January 2024" link="#"
             technologies="html5, css3, typescript, nodejs, mysql, vite, figma, gitlab, vscode" images='[
-        "./img/project 3/example.png",
-        "./img/project 3/example.png",
-        "./img/project 3/example.png"
-      ]'>
+              "./img/project 3/example.png",
+              "./img/project 3/example.png",
+              "./img/project 3/example.png"
+            ]'>
           </timeline-item>
 
           <timeline-item title="Dokkie - Outing Planner WebApp"
@@ -237,9 +246,11 @@
       connectedCallback() {
         // Get attributes
         const title = this.getAttribute("title") || "";
-        const description = this.getAttribute("description") || "";
         const date = this.getAttribute("date") || "";
         const link = this.getAttribute("link") || "#";
+
+        // prefer inner HTML for description, fallback to attribute
+        const description = this.innerHTML.trim() || this.getAttribute("description") || "";
 
         // parse images JSON
         let images = [];
