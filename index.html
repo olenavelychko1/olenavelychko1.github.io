@@ -112,21 +112,26 @@
             ]'>
           </timeline-item>
 
-          <timeline-item title="Webgame: The Lost City of Azarath"
-            date="February 2025 - April 2025" link="#"
+          <timeline-item title="Webgame: The Lost City of Azarath" date="February 2025 - April 2025" link="#"
             technologies="html5, css3, typescript, figma, esbuild, vite, express, postman, gitlab, vscode" images='[
               "./img/blok 3/screenshot1.png",
-              "./img/blok 3/screenshot2.png"
+              "./img/blok 3/screenshot2.png",
+              "./img/blok 3/video1.mp4"
             ]'>
-              <div class="project-description">
-              A web-based game called "The Lost City of Azarath," built with TypeScript, HTML5, CSS3, and Express. 
-              This has been a huge passion project for me and my team — in fact, it was my favorite project throughout the entire study. 
-              We learned a lot about game development during this period and faced challenges that pushed our skills, 
-              but in the end we won a school award for "The Most Complete Experience" and were one of the most liked games in the first-year classes.  
-                  <br/>
-              I personally contributed by developing the reading component, creating the dynamic sound system that changes room music and ambient sounds, 
-              implementing the arrow navigation component, designing around 60% of the UI, building most of the game rooms, 
-              and acting as the main bug fixer for the team. This project helped me significantly improve my TypeScript and HTML skills, 
+            <div class="project-description">
+              A web-based game called "The Lost City of Azarath," built with TypeScript, HTML5, CSS3, and Express.
+              This has been a huge passion project for me and my team — in fact, it was my favorite project throughout
+              the entire study.
+              We learned a lot about game development during this period and faced challenges that pushed our skills,
+              but in the end we won a school award for "The Most Complete Experience" and were one of the most liked
+              games in the first-year classes.
+              <br />
+              I personally contributed by developing the reading component, creating the dynamic sound system that
+              changes room music and ambient sounds,
+              implementing the arrow navigation component, designing around 60% of the UI, building most of the game
+              rooms,
+              and acting as the main bug fixer for the team. This project helped me significantly improve my TypeScript
+              and HTML skills,
               strengthened my problem-solving abilities, and deepened my passion for game development.
             </div>
           </timeline-item>
@@ -292,13 +297,26 @@
                 <div class="carousel-inner">
                 ${images
               .map(
-                (src, index) => `
-                      <div class="carousel-item ${index === 0 ? "active" : ""}">
-                        <a href="${src}" target="_blank" rel="noopener noreferrer" title="Click to open in full view">
-                          <img src="${src}" alt="project image">
-                        </a>
-                      </div>`
-              )
+                (src, index) => {
+                  const ext = src.split('.').pop().toLowerCase();
+                  // If it's a video file, use <video>, else use <img>
+                  if (ext === "mp4" || ext === "webm" || ext === "ogg") {
+                    return `
+                  <div class="carousel-item ${index === 0 ? "active" : ""}">
+                    <video controls>
+                      <source src="${src}" type="video/${ext}">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>`;
+                  } else {
+                    return `
+                  <div class="carousel-item ${index === 0 ? "active" : ""}">
+                    <a href="${src}" target="_blank" rel="noopener noreferrer" title="Click to open in full view">
+                      <img src="${src}" alt="project image">
+                    </a>
+                  </div>`;
+                  }
+                })
               .join("")}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
