@@ -61,6 +61,7 @@ const techBadgesHtml = computed(() => {
                         Code Snippets on
                         GitHub →</a>
 
+                    <h6 style="margin-top: 1rem; color: var(--muted)">Technologies Used: </h6>
                     <div v-if="techBadgesHtml.length" class="project-tech">
                         <a v-for="(badge, i) in techBadgesHtml" :key="i" class="tech-badge" :href="badge.link"
                             target="_blank" rel="noreferrer">
