@@ -1,11 +1,9 @@
 <script setup>
-import { ref, onMounted, watch, nextTick } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 
 const props = defineProps({
     images: { type: Array, default: () => [] },
-    // optional: you can expose a fixed visible height (px) if you want
-    visibleHeightPx: { type: Number, default: 360 }
 });
 
 const currentIndex = ref(-1);
@@ -101,15 +99,13 @@ watch(() => props.images, (newImgs) => {
     box-sizing: border-box;
     max-height: 100%;
     /* constrain thumbnails to container height */
-    overflow: auto;
-    /* scroll thumbnails inside the column if too tall */
+    overflow: auto; /* keep scrolling behavior */
+    padding-bottom: 8px; /* buffer so last item won't touch bottom */
 }
 
 .thumb-btn {
     width: 48px;
     height: 48px;
-    border-radius: 6px;
-    overflow: hidden;
     cursor: pointer;
     padding: 0;
     border: none;
@@ -120,13 +116,62 @@ watch(() => props.images, (newImgs) => {
     justify-content: center;
     border-radius: 8px;
     overflow: hidden;
+    transition: width 0.15s ease, height 0.15s ease;
 }
+
+.thumb-btn.active {
+    position: relative;
+    z-index: 1;
+}
+
+/* I put a pseudo-element on top of the picture (hence the "after"),
+to simulate a rounded border with a gradient,
+as it normally can't be round with a gradient */
+.thumb-btn.active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* covers entire button */
+    border-radius: 8px;
+    padding: 3px;
+    /* border thickness */
+    background: linear-gradient(180deg, var(--accent-2), var(--accent));
+
+    /* Create hole in the middle (standard + webkit) */
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0); 
+    mask-composite: exclude;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+
+    pointer-events: none;
+}
+
+/* Hover: gentle scale-up */
+.thumb-btn:hover {
+    width: 54px;   /* slightly bigger */
+    height: 54px;
+}
+
+/* If it's active AND hover, combine both transforms */
+/* .thumb-btn.active:hover {
+    transform: translateY(-2px) scale(1.05);
+} */
+
+/* Keep the default active state unchanged */
+/* .thumb-btn.active {
+    transform: translateY(-2px);
+} */
 
 .thumb-btn img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    
 }
 
 .video-icon {
@@ -140,16 +185,6 @@ watch(() => props.images, (newImgs) => {
     font-size: 10px;
 }
 
-.thumb-btn:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.thumb-btn.active {
-    /* selected thumbnail styling */
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
 
 /* main media viewer */
 .main-media {
