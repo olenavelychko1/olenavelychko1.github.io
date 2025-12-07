@@ -22,7 +22,7 @@ export const TECH_BADGES = {
   github: { src: "https://img.shields.io/badge/github-%23121011.svg?logo=github&logoColor=white", alt: "GitHub", link: "https://github.com/" },
   godot: { src: "https://img.shields.io/badge/GODOT-%23FFFFFF.svg?logo=godot-engine", alt: "Godot Engine", link: "https://godotengine.org/" },
   postman: { src: "https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white", alt: "Postman", link: "https://www.postman.com/" },
-  esbuild: { src: "https://img.shields.io/badge/esbuild-%23FFCF00.svg?logo=esbuild&logoColor=black", alt: "Esbuild", link: "https://esbuild.github.io/" },
+  // esbuild: { src: "https://img.shields.io/badge/esbuild-%23FFCF00.svg?logo=esbuild&logoColor=black", alt: "Esbuild", link: "https://esbuild.github.io/" },
   nodejs: { src: "https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white", alt: "NodeJS", link: "https://nodejs.org/" },
   vite: { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
   // cypress: { src: "https://img.shields.io/badge/-cypress-%23E5E5E5?logo=cypress&logoColor=058a5e", alt: "Cypress", link: "https://www.cypress.io/" },
