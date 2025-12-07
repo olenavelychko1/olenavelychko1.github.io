@@ -25,14 +25,20 @@ const techBadgesHtml = computed(() => {
 <template>
     <div class="timeline-item">
         <div class="timeline-marker"></div>
+
         <div class="timeline-content">
-            <div class="project-card">
-                <div class="project-text">
+
+
+            
+
+                <!-- On the left, the project information -->
+                <div class="project-text card-block">
                     <h3 class="project-title">{{ title }}</h3>
                     <div class="project-description">
                         <slot>{{ description }}</slot>
                     </div>
                     <p class="project-date">{{ date }}</p>
+
                     <a v-if="link" :href="link" class="project-link" target="_blank" rel="noreferrer">View Project &
                         Code Snippets on
                         GitHub →</a>
@@ -46,20 +52,16 @@ const techBadgesHtml = computed(() => {
                     </div>
                 </div>
 
-                <div v-if="images && images.length" class="project-media">
+                <!-- On the right, the project media gallery -->
+                <div v-if="images && images.length" class="project-media card-block">
                     <MediaGallery :images="images" />
                 </div>
-            </div>
+            
         </div>
     </div>
 </template>
 
 <style scoped>
-.timeline-content {
-  max-width: 100%;
-  padding-left: 60px;
-  margin-left: 0;
-}
 
 .timeline-item:nth-child(odd) .timeline-content {
   margin-left: 0;
@@ -87,23 +89,32 @@ const techBadgesHtml = computed(() => {
   box-shadow: 0 0 0 5px #f5f8fa;
 }
 
-.project-card {
+.timeline-content {
+  max-width: 100%;
+  padding-left: 60px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem; /* visible separation between text and media */
+
+  /* margin-left: 0; */
+}
+
+.card-block {
   background: var(--card);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 3px 10px rgba(30, 30, 30, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.project-card:hover {
-  transform: translateY(-5px);
+.card-block:hover {
+  transform: translateY(-3px);
   box-shadow: 0 5px 20px rgba(30, 30, 30, 0.15);
 }
+
+/* On the left, the project information */
 .project-text {
-  flex: 1;
-  min-width: 240px;
+  min-width: 260px;
 }
 .project-title {
   font-size: 1.3rem;
@@ -144,4 +155,22 @@ const techBadgesHtml = computed(() => {
   padding: 2px;
 }
 
+/* On the right, the project media gallery */
+.project-media {
+  max-width: 420px; /* optional limit */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* stack on small screens */
+@media (max-width: 900px) {
+  .timeline-content {
+    flex-direction: column;
+  }
+
+  .project-media {
+    max-width: 100%;
+  }
+}
 </style>

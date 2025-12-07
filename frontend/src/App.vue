@@ -167,7 +167,7 @@ const projects = [
 /* reuse your css/style.css for main styling; minimal local tweaks here */
 main {
   padding: 1rem;
-  max-width: 1100px;
+
   margin: 0 auto;
 }
 
@@ -230,6 +230,12 @@ main {
   border: 1px solid var(--glass-border);
 }
 
+/* ---------- Intro / About me ---------- */
+.description {
+  max-width: 1100px;
+  margin: 0 auto ;
+}
+
 .intro {
   display: flex;
   gap: 1.1rem;
@@ -259,6 +265,8 @@ section.card {
   margin-bottom: 1.25rem;
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow);
+  max-width: 1100px;
+  margin: 1.25rem auto;
 }
 
 section.card h2 {
@@ -267,21 +275,7 @@ section.card h2 {
   font-size: 1.1rem;
 }
 
-
 /* projects / timeline */
-.projects-section {
-  /* max-width: 900px; */
-  margin: 2rem auto;
-  padding: 0;
-  background: transparent;
-}
-.projects-title {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: var(--accent-2);
-}
-
 .timeline {
   position: relative;
   padding: 2rem 0;
@@ -296,6 +290,21 @@ section.card h2 {
   background: linear-gradient(180deg, var(--accent-2), var(--accent));
   border-radius: 4px;
 }
+
+.projects-section {
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 0;
+  background: transparent;
+}
+.projects-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: var(--accent-2);
+}
+
+
 
 footer {
   text-align: center;
