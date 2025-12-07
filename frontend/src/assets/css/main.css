@@ -1,0 +1,108 @@
+/* ---------- Theme variables ---------- */
+:root {
+  --bg: #0b0f14;
+  --bg2: #07121a;
+  --panel: rgba(255, 255, 255, 0.03);
+  --card: rgba(255, 255, 255, 0.04);
+  --card-strong: #0b0f14;
+  --glass: rgba(255, 255, 255, 0.04);
+  --text-default: #e6eef6;
+  --muted: #9aa8b3;
+  --accent: #6be3b0;
+  --accent-2: #6aa7ff;
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+  --radius: 14px;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --bg: #f6f8fb;
+  --bg2: #e3ebf5;
+  --panel: #ffffff;
+  --card: #ffffff;
+  --card-strong: #f8fbff;
+  --glass: rgba(10, 22, 40, 0.03);
+  --text-default: #0b1220;
+  --muted: #5a6b77;
+  --accent: #0ea5a9;
+  --accent-2: #2563eb;
+  --glass-border: rgba(10, 22, 40, 0.06);
+  --shadow: 0 6px 20px rgba(12, 20, 30, 0.08);
+}
+
+/* ---------- Global ---------- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(
+        1200px 800px at 10% 10%,
+        rgba(106, 167, 255, 0.06),
+        transparent
+      )
+      no-repeat,
+    linear-gradient(180deg, var(--bg), var(--bg2) 60%);
+  background-repeat: no-repeat;
+  background-size: 1400px 900px, auto;
+  background-attachment: fixed;
+  color: var(--text-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  padding: 3.5rem 1rem 4.5rem 1rem;
+}
+
+.theme-default-text {
+  color: var(--text-default);
+}
+
+a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+/* small screens */
+@media (max-width: 850px) {
+  .intro {
+    flex-direction: column;
+  }
+
+  .theme-toggle {
+    position: static;
+  }
+
+  body {
+    padding-top: 4.5rem;
+  }
+}
+
+.project-link:hover {
+  color: #93f9b9;
+}
+
+.tech-badge {
+  text-decoration: none;
+  /* Remove underline from links in tech badges */
+}
+
+.tech-badge img {
+  height: 26px;
+  border-radius: 6px;
+}
+
+.tech-badge img:hover {
+  opacity: 0.8;
+}
