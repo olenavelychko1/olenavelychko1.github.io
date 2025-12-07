@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from "vue";
 import TimelineItem from './components/TimelineItem.vue';
 import TechBadgeList from './components/TechBadgeList.vue';
 import ThemeToggle from './components/ThemeToggle.vue';
@@ -6,14 +7,47 @@ import { projects } from './data/projects.js';
 
 
 
+const isTopbarVisible = ref(true);
+let lastScrollY = 0;
 
+onMounted(() => {
+  const descriptionSection = document.querySelector(".description");
+
+  const handleScroll = () => {
+    const descriptionBottom = descriptionSection.getBoundingClientRect().bottom;
+
+    // If we are ABOVE the end of the description section → always show
+    if (descriptionBottom > 0) {
+      isTopbarVisible.value = true;
+      lastScrollY = window.scrollY;
+      return;
+    }
+
+    // BELOW the description → enable hide-on-scroll logic
+    const currentY = window.scrollY;
+
+    if (currentY > lastScrollY + 3) {
+      // scrolling down
+      isTopbarVisible.value = false;
+    } 
+    else if (currentY < lastScrollY - 3) {
+      // scrolling up
+      isTopbarVisible.value = true;
+    }
+
+    lastScrollY = currentY;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  onUnmounted(() => window.removeEventListener("scroll", handleScroll));
+});
 
 
 </script>
 
 <template>
   <div>
-    <header class="topbar" role="banner">
+    <header class="topbar" :class="{ hidden: !isTopbarVisible }" role="banner">
       <div class="brand">
         <div class="avatar">L</div>
         <div>
@@ -111,6 +145,12 @@ main {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(6px) saturate(120%);
   box-shadow: var(--shadow);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.topbar.hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
 }
 .brand {
   display: flex;
