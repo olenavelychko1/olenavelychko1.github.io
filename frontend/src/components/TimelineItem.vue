@@ -194,15 +194,18 @@ const techBadgesHtml = computed(() => {
 
   .timeline-content {
     flex-direction: column;
-    padding-left: 16px;
+    padding-left: 3rem;
     gap: 0.75rem;
     height: auto;
   }
 
   .project-text {
-    flex: 1 1 auto;
+    flex: 0 0 auto;    /* allow natural height */
+    width: 100%;
+    max-width: initial;
     max-height: initial;
     overflow: visible;
+    padding-right: 0;
   }
 
   .project-media {

@@ -99,8 +99,10 @@ watch(() => props.images, (newImgs) => {
     box-sizing: border-box;
     max-height: 100%;
     /* constrain thumbnails to container height */
-    overflow: auto; /* keep scrolling behavior */
-    padding-bottom: 8px; /* buffer so last item won't touch bottom */
+    overflow: auto;
+    /* keep scrolling behavior */
+    padding-bottom: 8px;
+    /* buffer so last item won't touch bottom */
 }
 
 .thumb-btn {
@@ -140,7 +142,7 @@ as it normally can't be round with a gradient */
     /* Create hole in the middle (standard + webkit) */
     mask:
         linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0); 
+        linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -152,7 +154,8 @@ as it normally can't be round with a gradient */
 
 /* Hover: gentle scale-up */
 .thumb-btn:hover {
-    width: 54px;   /* slightly bigger */
+    width: 54px;
+    /* slightly bigger */
     height: 54px;
 }
 
@@ -171,7 +174,7 @@ as it normally can't be round with a gradient */
     height: 100%;
     object-fit: cover;
     display: block;
-    
+
 }
 
 .video-icon {
@@ -218,10 +221,10 @@ as it normally can't be round with a gradient */
 .main-video {
     max-width: 100%;
     max-height: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
-    object-fit: contain;
-    display: block;
+    object-fit: scale-down;
+    
 }
 
 @media (max-width: 900px) {
@@ -236,14 +239,36 @@ as it normally can't be round with a gradient */
         overflow-x: auto;
         padding: 4px;
         overflow-x: auto;
+
+        box-sizing: content-box;
+        padding: 0.15rem 0;
+        /* to prevent weird scroll on scale up */
+
         gap: 6px;
         justify-content: flex-start;
         max-height: none;
     }
 
     .main-media {
-        height: 60vh;
+        max-height: 60vh;
         /* small-screen fixed media height */
+    }
+
+    /* allow internal vertical scroll when the image is taller than the area */
+    .main-inner {
+        overflow: auto;
+        align-items: flex-start;
+        /* show top of long images first */
+        padding: 8px;
+    }
+
+    /* for very tall images keep natural height so user can scroll them inside .main-inner */
+    .main-img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        /* let it be taller than container when needed */
+        display: block;
     }
 }
 </style>
