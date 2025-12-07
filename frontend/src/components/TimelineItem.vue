@@ -8,11 +8,8 @@ const props = defineProps({
     link: { type: String, default: '' },
     description: { type: String, default: '' },
     technologies: { type: [String, Array], default: () => [] }, // comma separated or array
-    images: { type: Array, default: () => [] }
+    images: { type: Array, default: () => [] } // array of src strings (images or videos)
 });
-
-const active = ref(0);
-const carouselId = "carousel-" + Math.random().toString(36).slice(2);
 
 
 function extOf(src) {
@@ -28,13 +25,6 @@ function videoMime(src) {
     if (ext === 'webm') return 'video/webm';
     if (ext === 'ogg') return 'video/ogg';
     return '';
-}
-function mediaProps(src) {
-    if (isVideo(src)) {
-        return { controls: true, style: 'max-width:100%;height:auto;' };
-    } else {
-        return { src, alt: 'project image', style: 'max-width:100%;height:auto;' };
-    }
 }
 
 const techBadgesHtml = computed(() => {
@@ -71,17 +61,15 @@ const techBadgesHtml = computed(() => {
                 </div>
 
                 <div v-if="images && images.length" class="project-media">
-                    <div :id="carouselId" class="carousel slide">
+                    <!-- <div :id="carouselId" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item" v-for="(src, idx) in images" :key="idx"
                                 :class="idx === 0 ? 'active' : ''">
-                                <!-- Video -->
                                 <video v-if="isVideo(src)" controls style="max-width:100%;height:auto;">
                                     <source :src="src" :type="videoMime(src)" />
                                     Your browser does not support video.
                                 </video>
 
-                                <!-- Image -->
                                 <a v-else :href="src" target="_blank" rel="noopener noreferrer"
                                     title="Click to open in full view">
                                     <img :src="src" alt="project image" style="max-width:100%;height:auto;">
@@ -101,7 +89,7 @@ const techBadgesHtml = computed(() => {
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
