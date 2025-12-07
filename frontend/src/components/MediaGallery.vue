@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, nextTick, watch } from 'vue';
 
 
 const props = defineProps({
@@ -7,6 +7,13 @@ const props = defineProps({
 });
 
 const currentIndex = ref(-1);
+
+// refs used for measuring image size
+const mainInnerRef = ref(null);
+const imgRef = ref(null);
+const imageIsTooTall = ref(false);
+
+const forgiveTolerance = 20; // pixels of tolerance
 
 function extOf(src) {
     return (src || '').split('.').pop().toLowerCase();
@@ -31,14 +38,52 @@ function select(i) {
     currentIndex.value = Math.max(0, Math.min(i, props.images.length - 1));
 }
 
+// Wait for layout to stabilize and then measure rendered sizes
+async function detectTooTall() {
+  // wait for DOM update / image layout
+  await nextTick();
+  imageIsTooTall.value = false;
+  console.log('Detecting too tall image...');
+
+  const img = imgRef.value;
+  const container = mainInnerRef.value;
+  if (!img || !container) return;
+
+  console.log('Measuring sizes...');
+
+  // If the image hasn't loaded yet it may have zero rect; bail until load
+  const imgRect = img.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  if (!imgRect.height || !containerRect.height) return;
+
+  console.log('Image height:', imgRect.height, 'Container height:', containerRect.height);
+  imageIsTooTall.value = (imgRect.height - containerRect.height) > forgiveTolerance;
+}
+
+// When image load event fires, re-check using measured rendered size
+function onImageLoad() {
+  detectTooTall();
+}
+
 onMounted(() => {
     if (props.images && props.images.length > 0) currentIndex.value = 0;
     else currentIndex.value = -1;
+
+  nextTick(() => detectTooTall());
 });
 
-watch(() => props.images, (newImgs) => {
-    if (!newImgs || newImgs.length === 0) currentIndex.value = -1;
-    else if (currentIndex.value < 0 || currentIndex.value >= newImgs.length) currentIndex.value = 0;
+// re-check after switching images
+watch(currentIndex, async () => {
+  imageIsTooTall.value = false;
+  await nextTick();
+  detectTooTall();
+});
+
+// if images array changes, reset selection & re-check
+watch(() => props.images, async (newImgs) => {
+  await nextTick();
+  if (newImgs && newImgs.length && currentIndex.value === -1) currentIndex.value = 0;
+  detectTooTall();
 });
 
 </script>
@@ -59,10 +104,13 @@ watch(() => props.images, (newImgs) => {
         <div class="main-media">
             <!-- Show a photo if it's not a video extension, otherwise a video -->
             <div class="main-frame" v-if="currentIndex >= 0">
-                <div class="main-inner">
+                <div class="main-inner" ref="mainInnerRef">
                     <a :href="images[currentIndex]" target="_blank" rel="noopener noreferrer"
                         v-if="!isVideo(images[currentIndex])" title="Open media in full view">
-                        <img class="main-img" :src="images[currentIndex]" alt="project image" />
+                        <img ref="imgRef" class="main-img" :src="images[currentIndex]" alt="project image" @load="onImageLoad" />
+                        <div v-if="imageIsTooTall" class="click-overlay" aria-hidden="true">
+                            The image doesn't fit in properly. Click to view full image
+                        </div>
                     </a>
 
                     <div v-else class="video-wrapper">
@@ -73,7 +121,7 @@ watch(() => props.images, (newImgs) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </template>
 
@@ -223,8 +271,36 @@ as it normally can't be round with a gradient */
     max-height: 100%;
     width: 100%;
     height: auto;
-    object-fit: scale-down;
-    
+    object-fit: contain;
+
+}
+
+.main-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Semi-transparent overlay to tell that the image is too tall */
+.click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    pointer-events: none;
+    border-radius: 12px;
 }
 
 @media (max-width: 900px) {
@@ -256,7 +332,6 @@ as it normally can't be round with a gradient */
 
     /* allow internal vertical scroll when the image is taller than the area */
     .main-inner {
-        overflow: auto;
         align-items: flex-start;
         /* show top of long images first */
         padding: 8px;
@@ -270,5 +345,7 @@ as it normally can't be round with a gradient */
         /* let it be taller than container when needed */
         display: block;
     }
+
+
 }
 </style>
