@@ -1,6 +1,7 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { TECH_BADGES } from '../data/techBadges';
+import MediaGallery from './MediaGallery.vue';
 
 const props = defineProps({
     title: { type: String, default: '' },
@@ -11,21 +12,6 @@ const props = defineProps({
     images: { type: Array, default: () => [] } // array of src strings (images or videos)
 });
 
-
-function extOf(src) {
-    return (src || '').split('.').pop().toLowerCase();
-}
-function isVideo(src) {
-    const ext = extOf(src);
-    return ['mp4', 'webm', 'ogg'].includes(ext);
-}
-function videoMime(src) {
-    const ext = extOf(src);
-    if (ext === 'mp4') return 'video/mp4';
-    if (ext === 'webm') return 'video/webm';
-    if (ext === 'ogg') return 'video/ogg';
-    return '';
-}
 
 const techBadgesHtml = computed(() => {
     let techList = [];
@@ -61,35 +47,7 @@ const techBadgesHtml = computed(() => {
                 </div>
 
                 <div v-if="images && images.length" class="project-media">
-                    <!-- <div :id="carouselId" class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item" v-for="(src, idx) in images" :key="idx"
-                                :class="idx === 0 ? 'active' : ''">
-                                <video v-if="isVideo(src)" controls style="max-width:100%;height:auto;">
-                                    <source :src="src" :type="videoMime(src)" />
-                                    Your browser does not support video.
-                                </video>
-
-                                <a v-else :href="src" target="_blank" rel="noopener noreferrer"
-                                    title="Click to open in full view">
-                                    <img :src="src" alt="project image" style="max-width:100%;height:auto;">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="carousel-controls" v-if="images.length > 1">
-                            <button class="carousel-control-prev" type="button" :data-bs-target="'#' + carouselId"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" :data-bs-target="'#' + carouselId"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div> -->
+                    <MediaGallery :images="images" />
                 </div>
             </div>
         </div>
@@ -98,7 +56,7 @@ const techBadgesHtml = computed(() => {
 
 <style scoped>
 .timeline-content {
-  width: 100%;
+  max-width: 100%;
   padding-left: 60px;
   margin-left: 0;
 }
@@ -184,27 +142,6 @@ const techBadgesHtml = computed(() => {
   border-radius: 6px;
   background: transparent;
   padding: 2px;
-}
-.project-media {
-  max-height: 30rem;
-  overflow: hidden;  
-}
-
-.project-media img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-  cursor: pointer; 
-}
-
-.project-media .carousel-control-prev,
-.project-media .carousel-control-next {
-  width: 40px;
-  height: 40px;
-  top: 10rem;    
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
 }
 
 </style>

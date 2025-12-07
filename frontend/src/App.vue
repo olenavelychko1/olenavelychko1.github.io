@@ -270,7 +270,7 @@ section.card h2 {
 
 /* projects / timeline */
 .projects-section {
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 2rem auto;
   padding: 0;
   background: transparent;
@@ -285,6 +285,7 @@ section.card h2 {
 .timeline {
   position: relative;
   padding: 2rem 0;
+  max-width: 100%;
 }
 .timeline::before {
   content: "";
