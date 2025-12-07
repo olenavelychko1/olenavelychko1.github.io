@@ -91,8 +91,7 @@ onMounted(() => {
 
       <section class="projects-section">
         <h2 class="projects-title">Projects Timeline</h2>
-        <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: some
-          of the screenshots have varying height, so I advise you to click on the pictures to view them in full view!
+        <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: Some screenshots may be too tall, so click on them to view the full image in a new tab.
         </h5>
 
         <div class="timeline" id="timeline-container">
