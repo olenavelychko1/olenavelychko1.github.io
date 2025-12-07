@@ -71,14 +71,19 @@ const techBadgesHtml = computed(() => {
   margin-left: 0;
 }
 
+/* each timeline item uses full viewport height so user scrolls "onto" it */
 .timeline-item {
   position: relative;
-  margin-bottom: 1.6rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  box-sizing: border-box;
 }
 .timeline-marker {
   position: absolute;
   left: 6px;
-  top: 0;
+  top: 1.25rem;
   width: 30px;
   height: 30px;
   border-radius: 8px;
@@ -90,22 +95,29 @@ const techBadgesHtml = computed(() => {
 }
 
 .timeline-content {
-  max-width: 100%;
-  padding-left: 60px;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 1rem; /* visible separation between text and media */
-
-  /* margin-left: 0; */
+  gap: 1rem; /* visible gap between two cards */
+  padding-left: 60px; /* offset for marker */
+  align-items: stretch; /* make children full height */
+  box-sizing: border-box;
+  height: 100%;                    /* FIX: fill the parent's 100vh */
+  min-height: 0;                   /* allow flex children to shrink properly */
 }
 
 .card-block {
   background: var(--card);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow: 0 3px 10px rgba(30, 30, 30, 0.1);
   flex: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* fill timeline-content vertical space */
+  min-height: 0;          /* Important to prevent flex overflow */
+  overflow: hidden; /* ensure the card doesn't grow with media */
+  display: flex;
+  flex-direction: column;
+  
 }
 .card-block:hover {
   transform: translateY(-3px);
@@ -114,7 +126,13 @@ const techBadgesHtml = computed(() => {
 
 /* On the left, the project information */
 .project-text {
-  min-width: 260px;
+  flex: 0 0 32%; /* fixed-ish column width on large screens */
+  min-width: 240px;
+  max-width: 420px;
+  min-height: 0;          /* allow its internal scrolling */
+  overflow: auto; /* allow long descriptions to scroll inside the text column */
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 .project-title {
   font-size: 1.3rem;
@@ -157,20 +175,40 @@ const techBadgesHtml = computed(() => {
 
 /* On the right, the project media gallery */
 .project-media {
-  max-width: 420px; /* optional limit */
+  flex: 1 1 0%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.9rem;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 /* stack on small screens */
-@media (max-width: 900px) {
+@media (max-width: 950px) {
+   .timeline-item {
+    height: auto;         /* allow the item to grow on small screens */
+    min-height: 0;
+  }
+
   .timeline-content {
     flex-direction: column;
+    padding-left: 16px;
+    gap: 0.75rem;
+    height: auto;
+  }
+
+  .project-text {
+    flex: 1 1 auto;
+    max-height: initial;
+    overflow: visible;
   }
 
   .project-media {
-    max-width: 100%;
+    width: 100%;
+    height: 60vh; /* keep media visible but smaller on mobile */
+    min-height: 0;
   }
 }
 </style>

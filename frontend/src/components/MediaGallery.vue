@@ -8,6 +8,7 @@ const props = defineProps({
     visibleHeightPx: { type: Number, default: 360 }
 });
 
+const currentIndex = ref(-1);
 
 function extOf(src) {
     return (src || '').split('.').pop().toLowerCase();
@@ -24,101 +25,54 @@ function videoMime(src) {
     return '';
 }
 
-const slidesRef = ref(null);
-const scrollbarRef = ref(null);
-const scrollbarThumbRef = ref(null);
-
-
-const visibleHeight = ref(props.visibleHeightPx);
-const totalHeight = ref(0);
-
-
-const updateSizes = () => {
-    if (!slidesRef.value) return;
-    visibleHeight.value = slidesRef.value.clientHeight || props.visibleHeightPx;
-    totalHeight.value = slidesRef.value.scrollHeight || 0;
-    if (scrollbarRef.value) {
-        scrollbarRef.value.style.height = `${visibleHeight.value}px`;
+function select(i) {
+    if (!props.images || props.images.length === 0) {
+        currentIndex.value = -1;
+        return;
     }
-    updateThumbnail();
-};
+    currentIndex.value = Math.max(0, Math.min(i, props.images.length - 1));
+}
 
-
-const updateThumbnail = () => {
-    if (!slidesRef.value || !scrollbarThumbRef.value) return;
-    const v = visibleHeight.value;
-    const t = totalHeight.value || 1;
-    const containerH = visibleHeight.value;
-    const thumbH = Math.max((v / t) * containerH, 20);
-    const maxScroll = t - v;
-    const scrollTop = slidesRef.value.scrollTop;
-    const ratio = maxScroll > 0 ? scrollTop / maxScroll : 0;
-    const top = ratio * (containerH - thumbH);
-    scrollbarThumbRef.value.style.height = `${thumbH}px`;
-    scrollbarThumbRef.value.style.transform = `translateY(${top}px)`;
-};
-
-
-const scrollToIndex = (idx) => {
-    if (!slidesRef.value) return;
-    const child = slidesRef.value.children[idx];
-    if (!child) return;
-    slidesRef.value.scrollTo({ top: child.offsetTop, behavior: 'smooth' });
-};
-
-
-const onSlidesScroll = () => updateThumbnail();
-
-
-onMounted(async () => {
-    await nextTick();
-    updateSizes();
-    window.addEventListener('resize', updateSizes);
-    setTimeout(updateSizes, 200);
+onMounted(() => {
+    if (props.images && props.images.length > 0) currentIndex.value = 0;
+    else currentIndex.value = -1;
 });
 
-
-watch(() => props.images, async () => {
-    await nextTick();
-    updateSizes();
+watch(() => props.images, (newImgs) => {
+    if (!newImgs || newImgs.length === 0) currentIndex.value = -1;
+    else if (currentIndex.value < 0 || currentIndex.value >= newImgs.length) currentIndex.value = 0;
 });
-
 
 </script>
 
 <template>
     <!-- This gallery has been created by taking inspiration from an open-source project. Original creator: https://codepen.io/chalarangelo -->
     <!-- There have been modifications to fit the current project -->
-    <div class="gallery-container">
+    <div class="gallery-container" :class="{ 'no-media': currentIndex === -1 }">
         <!-- A list of all media thumbnails -->
-        <div class="thumbnails">
-            <button v-for="(src, i) in images" :key="i" class="thumb-btn" @click="scrollToIndex(i)"
-                :aria-label="`Open media ${i + 1}`">
+        <div class="thumbnails" aria-hidden="false">
+            <button v-for="(src, i) in images" :key="i" :class="['thumb-btn', { active: i === currentIndex }]"
+                @click="select(i)" :aria-label="`Open media ${i + 1}`" title="Show media">
                 <img :src="src" :alt="`thumb ${i + 1}`" />
                 <span v-if="isVideo(src)" class="video-icon">▶</span>
             </button>
         </div>
 
+        <div class="main-media">
+            <!-- Show a photo if it's not a video extension, otherwise a video -->
+            <div class="main-frame" v-if="currentIndex >= 0">
+                <div class="main-inner">
+                    <a :href="images[currentIndex]" target="_blank" rel="noopener noreferrer"
+                        v-if="!isVideo(images[currentIndex])" title="Open media in full view">
+                        <img class="main-img" :src="images[currentIndex]" alt="project image" />
+                    </a>
 
-        <div class="scrollbar" ref="scrollbarRef" aria-hidden="true">
-            <div class="thumb" ref="scrollbarThumbRef"></div>
-        </div>
-
-
-        <div class="slides" ref="slidesRef" @scroll.passive="onSlidesScroll" :style="{ height: visibleHeight + 'px' }">
-            <div v-for="(src, idx) in images" :key="idx" class="slide" :data-id="idx">
-                <!-- Show a photo if it's not a video extension, otherwise a video -->
-                <a v-if="!isVideo(src)" :href="src" target="_blank" rel="noopener noreferrer"
-                    title="Click to open in full view">
-                    <img :src="src" alt="project image" />
-                </a>
-
-
-                <div v-else class="video-wrapper">
-                    <video controls style="max-width:100%;height:auto;">
-                        <source :src="src" :type="videoMime(src)" />
-                        Your browser does not support video.
-                    </video>
+                    <div v-else class="video-wrapper">
+                        <video class="main-video" controls :key="images[currentIndex]">
+                            <source :src="images[currentIndex]" :type="videoMime(images[currentIndex])" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,6 +86,9 @@ watch(() => props.images, async () => {
     gap: 12px;
     align-items: start;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .thumbnails {
@@ -139,20 +96,29 @@ watch(() => props.images, async () => {
     flex-direction: column;
     gap: 8px;
     align-items: center;
+    flex: 0 0 56px;
+    padding-top: 4px;
+    box-sizing: border-box;
+    max-height: 100%;
+    /* constrain thumbnails to container height */
+    overflow: auto;
+    /* scroll thumbnails inside the column if too tall */
 }
 
 .thumb-btn {
-    border: none;
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-    position: relative;
     width: 48px;
     height: 48px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -163,115 +129,86 @@ watch(() => props.images, async () => {
     display: block;
 }
 
+.video-icon {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: white;
+    font-size: 10px;
+}
+
 .thumb-btn:focus {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
-.video-icon {
-    position: absolute;
-    right: 4px;
-    bottom: 4px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 10px;
-    padding: 2px 5px;
-    border-radius: 4px;
+.thumb-btn.active {
+    /* selected thumbnail styling */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.scrollbar {
-    width: 6px;
-    height: 360px;
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 6px;
-    position: relative;
-    margin-left: 6px;
-    margin-right: 6px;
-}
-
-.thumb {
-    position: absolute;
-    left: 0;
-    top: 0;
+/* main media viewer */
+.main-media {
+    flex: 1;
     width: 100%;
-    height: 40px;
-    background: linear-gradient(180deg, var(--accent-2), var(--accent));
-    border-radius: 6px;
-    transform: translateY(0);
-    transition: transform 120ms linear, height 120ms linear;
-}
-
-.slides {
-    margin: 0;
-    display: grid;
-    grid-auto-flow: row;
-    gap: 1rem;
-    width: min(540px, calc(100vw - 220px));
-    padding: 0.25rem;
-    height: 360px;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.slides::-webkit-scrollbar {
-    display: none;
-}
-
-.slide {
-    scroll-snap-align: start;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 240px;
+    overflow: hidden;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+
 }
 
-.slides img {
+/* gradient/inner frame should also fill */
+.main-frame {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    display: block;
-}
-
-.video-wrapper {
-    width: 100%;
+    height: 100%;
+    /* padding: 6px;
+  border-radius: 12px; */
+    box-sizing: border-box;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-@media (max-width: 800px) {
+.main-img,
+.main-video {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 900px) {
     .gallery-container {
         flex-direction: column;
         gap: 8px;
+        height: auto;
     }
 
     .thumbnails {
         flex-direction: row;
         overflow-x: auto;
         padding: 4px;
-        gap: 6px;
-    }
-
-    .scrollbar {
-        display: none;
-    }
-
-    .slides {
-        height: 360px;
-        width: 100%;
-        scroll-snap-type: x mandatory;
-        grid-auto-flow: column;
         overflow-x: auto;
-        overflow-y: hidden;
-        gap: 12px;
-        grid-auto-columns: 100%;
+        gap: 6px;
+        justify-content: flex-start;
+        max-height: none;
     }
 
-    .slide {
-        min-width: 100%;
+    .main-media {
+        height: 60vh;
+        /* small-screen fixed media height */
     }
 }
 </style>
