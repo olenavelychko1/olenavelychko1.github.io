@@ -1,3 +1,4 @@
+// ----- Map of tech name -> badge info -----
 export const TECH_BADGES = {
   html5: { src: "https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white", alt: "HTML5", link: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
   css3: { src: "https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white", alt: "CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
@@ -25,6 +26,7 @@ export const TECH_BADGES = {
   vite: { src: "https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white", alt: "Vite", link: "https://vitejs.dev/" },
   cypress: { src: "https://img.shields.io/badge/-cypress-%23E5E5E5?logo=cypress&logoColor=058a5e", alt: "Cypress", link: "https://www.cypress.io/" },
   vitest: { src: "https://img.shields.io/badge/-Vitest-252529?logo=vitest&logoColor=FCC72B", alt: "Vitest", link: "https://vitest.dev/" },
+  // "eslint": { src: "https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white", alt: "ESLint", link: "https://eslint.org/" },
   markdown: { src: "https://img.shields.io/badge/markdown-%23000000.svg?logo=markdown&logoColor=white", alt: "Markdown", link: "https://www.markdownguide.org/" },
   mermaid: { src: "https://img.shields.io/badge/mermaid-008B8B.svg?logo=mermaid&logoColor=white", alt: "Mermaid", link: "https://mermaid.js.org/" }
 }
