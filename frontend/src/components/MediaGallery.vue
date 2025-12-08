@@ -1,27 +1,53 @@
 <script setup>
 import { ref, onMounted, nextTick, watch } from 'vue';
 
-
+/**
+ * Component props
+ * @property {string[]} images - List of image or video URLs to display in the gallery
+ */
 const props = defineProps({
     images: { type: Array, default: () => [] },
 });
 
+/**
+ * Index of the currently selected media item.
+ * -1 means no media is selected / available.
+ * @type {import('vue').Ref<number>}
+ */
 const currentIndex = ref(-1);
 
 // refs used for measuring image size
-const mainInnerRef = ref(null);
-const imgRef = ref(null);
+const mainInnerRef = ref(null); // main media container
+const imgRef = ref(null); // currently displayed image element
 const imageIsTooTall = ref(false);
 
-const forgiveTolerance = 20; // pixels of tolerance
+const forgiveTolerance = 20; // pixels of tolerance; numbers of pixels allowed, before an image is considered "too tall"
 
+/**
+ * Extracts the file extension from a media source URL.
+ *
+ * @param {string} src - Media source URL
+ * @returns {string} File extension (lowercase), or empty string if unavailable
+ */
 function extOf(src) {
     return (src || '').split('.').pop().toLowerCase();
 }
+/**
+ * Determines whether a media source is a video based on its file extension.
+ *
+ * @param {string} src - Media source URL
+ * @returns {boolean} True if the source is a video file
+ */
 function isVideo(src) {
     const ext = extOf(src);
     return ['mp4', 'webm', 'ogg'].includes(ext);
 }
+/**
+ * Returns the appropriate MIME type for a video source.
+ *
+ * @param {string} src - Video source URL
+ * @returns {string} Corresponding MIME type, or empty string if unknown
+ */
 function videoMime(src) {
     const ext = extOf(src);
     if (ext === 'mp4') return 'video/mp4';
@@ -30,6 +56,24 @@ function videoMime(src) {
     return '';
 }
 
+/**
+ * Returns the thumbnail source for a media item.
+ * Videos use a default thumbnail image, images reuse their own source.
+ *
+ * @param {string} src - Media source URL
+ * @returns {string} Thumbnail image URL
+ */
+function thumbFor(src) {
+  // if it's a video, use default thumbnail; otherwise use the original src
+  return isVideo(src) ? '/img/video-thumb.svg' : src;
+}
+
+/**
+ * Selects a media item by index.
+ * Safely clamps the index within array bounds.
+ *
+ * @param {number} i - Index of the media to select
+ */
 function select(i) {
     if (!props.images || props.images.length === 0) {
         currentIndex.value = -1;
@@ -38,7 +82,11 @@ function select(i) {
     currentIndex.value = Math.max(0, Math.min(i, props.images.length - 1));
 }
 
-// Wait for layout to stabilize and then measure rendered sizes
+/**
+ * Detects whether the currently displayed image is taller than its container.
+ * Uses rendered DOM sizes (not original image dimensions).
+ * Runs after layout settles via nextTick().
+ */
 async function detectTooTall() {
   // wait for DOM update / image layout
   await nextTick();
@@ -60,11 +108,18 @@ async function detectTooTall() {
   imageIsTooTall.value = (imgRect.height - containerRect.height) > forgiveTolerance;
 }
 
-// When image load event fires, re-check using measured rendered size
+/**
+ * Handler for the image `load` event.
+ * Ensures size detection runs only after the image is fully rendered.
+ */
 function onImageLoad() {
   detectTooTall();
 }
 
+/**
+ * Initialize the gallery on mount.
+ * Automatically selects the first image if available.
+ */
 onMounted(() => {
     if (props.images && props.images.length > 0) currentIndex.value = 0;
     else currentIndex.value = -1;
@@ -96,7 +151,7 @@ watch(() => props.images, async (newImgs) => {
         <div class="thumbnails" aria-hidden="false">
             <button v-for="(src, i) in images" :key="i" :class="['thumb-btn', { active: i === currentIndex }]"
                 @click="select(i)" :aria-label="`Open media ${i + 1}`" title="Show media">
-                <img :src="src" :alt="`thumb ${i + 1}`" />
+                <img :src="thumbFor(src)" :alt="isVideo(src) ? `video thumb ${i + 1}` : `thumb ${i + 1}`" />
                 <span v-if="isVideo(src)" class="video-icon">▶</span>
             </button>
         </div>
