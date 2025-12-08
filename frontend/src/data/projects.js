@@ -2,7 +2,7 @@ export const projects = [
   {
     title: "Election Results Website",
     date: "September 2025 - now",
-    link: "https://github.com/olenavelychko1/blok-5-election-website",
+    // link: "https://github.com/olenavelychko1/blok-5-election-website",
     technologies: ["html5", "css3", "java", "typescript", "vuejs", "springboot", "hibernate", "docker", "chartjs", "tailwindcss", "vite", "postman", "figma", "gitlab", "intellij"],
     images: [
       "/img/blok 5/elections-page1.jpeg",
@@ -15,7 +15,7 @@ export const projects = [
   {
     title: "Game Webshop Website",
     date: "April 2025 - July 2025",
-    link: "https://github.com/olenavelychko1/blok4-game-webshop",
+    // link: "https://github.com/olenavelychko1/blok4-game-webshop",
     technologies: ["html5", "css3", "typescript", "express", "vitest", "mysql", "vite", "esbuild", "docker", "postman", "figma", "gitlab", "vscode"],
     images: [
       "/img/blok 4/screenshot2.png",
@@ -29,7 +29,7 @@ export const projects = [
   {
     title: "Webgame: The Lost City of Azarath",
     date: "February 2025 - April 2025",
-    link: "#",
+    // link: "#",
     technologies: ["html5", "css3", "typescript", "figma", "esbuild", "vite", "express", "postman", "gitlab", "vscode"],
     images: [
       "/img/blok 3/screenshot1.png",
@@ -56,7 +56,7 @@ export const projects = [
   {
     title: "Programming Student Forum",
     date: "October 2024 - January 2024",
-    link: "#",
+    // link: "#",
     technologies: ["html5", "css3", "typescript", "nodejs", "mysql", "vite", "figma", "gitlab", "vscode",],
     images: [
       "/img/blok 4/screenshot2.png",
@@ -68,7 +68,7 @@ export const projects = [
   {
     title: "Dokkie - Outing Planner WebApp",
     date: "September 2024 - late October 2024",
-    link: "#",
+    // link: "#",
     technologies: ["html5", "css3", "typescript", "vite", "figma", "gitlab", "vscode",],
     images: [
       "/img/blok 4/screenshot2.png",
