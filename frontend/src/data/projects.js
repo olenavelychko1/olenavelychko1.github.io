@@ -2,7 +2,7 @@ export const projects = [
   {
     title: "Election Results Website",
     date: "September 2025 - now",
-    // link: "https://github.com/olenavelychko1/blok-5-election-website",
+    link: "https://github.com/olenavelychko1/blok-5-election-website",
     technologies: ["html5", "css3", "java", "typescript", "vuejs", "springboot", "hibernate", "docker", "chartjs", "tailwindcss", "postman", "figma", "gitlab", "intellij"],
     images: [
       "/img/blok 5/elections-page2.jpeg",
