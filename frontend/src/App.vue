@@ -30,7 +30,7 @@ onMounted(() => {
     if (currentY > lastScrollY + 3) {
       // scrolling down
       isTopbarVisible.value = false;
-    } 
+    }
     else if (currentY < lastScrollY - 3) {
       // scrolling up
       isTopbarVisible.value = true;
@@ -70,7 +70,8 @@ onMounted(() => {
             <p class="theme-default-text">
               Hi! I'm Lena, a second-year HBO-ICT Software Engineering student at Amsterdam University of Applied
               Sciences
-              <b>(Hogeschool van Amsterdam)</b>, Dutch language course. I love building interactive web projects, experimenting across
+              <b>(Hogeschool van Amsterdam)</b>, Dutch language course. I love building interactive web projects,
+              experimenting across
               front-end and back-end, learning new skills and improving with every project I work on. I enjoy
               collaborating and get a lot of energy from turning ideas into something real.
             </p>
@@ -88,14 +89,15 @@ onMounted(() => {
             </ul>
           </aside>
           <aside class="photo">
-            <img src="./../public/img/me.png" alt="Photo of Olena Velychko"  />
+            <img src="./../public/img/me.png" alt="Photo of Olena Velychko" />
           </aside>
         </div>
       </section>
 
       <section class="projects-section">
         <h2 class="projects-title">Projects Timeline</h2>
-        <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: Some screenshots may be too tall, so click on them to view the full image in a new tab.
+        <h5 class="theme-default-text">A selection of my recent projects showcasing my skills and experience. NOTE: Some
+          screenshots may be too tall, so click on them to view the full image in a new tab.
         </h5>
 
         <div class="timeline" id="timeline-container">
@@ -117,6 +119,9 @@ onMounted(() => {
         <h2>Contact</h2>
         <p>Email: <a href="mailto:olenavelychko12@gmail.com">olenavelychko12@gmail.com</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/olena-velychko-945932391/" target="_blank"
+            rel="noreferrer">Olena
+            Velychko</a></p>
+        <p>GitHub: <a href="https://github.com/olenavelychko1" target="_blank"
             rel="noreferrer">Olena
             Velychko</a></p>
         <p>&copy; 2025 Olena Velychko</p>
@@ -150,16 +155,19 @@ main {
   box-shadow: var(--shadow);
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
+
 .topbar.hidden {
   transform: translateY(-120%);
   opacity: 0;
   pointer-events: none;
 }
+
 .brand {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
+
 .avatar {
   width: 52px;
   height: 52px;
@@ -179,6 +187,7 @@ main {
   font-size: 1.15rem;
   margin: 0;
 }
+
 .subtitle {
   margin: 0.5rem 0 0 0;
   font-size: 1.3rem;
@@ -201,12 +210,12 @@ main {
 /* ---------- Intro / About me ---------- */
 .description {
   max-width: 1100px;
-  margin: 0 auto ;
+  margin: 0 auto;
 }
 
 .intro {
   display: flex;
-  
+
   align-items: flex-start;
 }
 
@@ -219,9 +228,9 @@ main {
   max-width: 30rem;
 
   li {
-    
+
     white-space: normal;
-  overflow-wrap: anywhere;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -242,18 +251,18 @@ main {
     z-index: 1;
   }
 }
+
 /* the glow */
 .photo::before {
   content: "";
   position: absolute;
-  inset: -12px; /* how far the glow spreads */
+  inset: -12px;
+  /* how far the glow spreads */
   border-radius: 18px;
 
-  background: radial-gradient(
-    circle at bottom,
-    #6be3b131,
-    transparent 70%
-  );
+  background: radial-gradient(circle at bottom,
+      #6be3b131,
+      transparent 70%);
 
   filter: blur(18px);
   z-index: 0;
@@ -284,6 +293,7 @@ section.card h2 {
   padding: 2rem 0;
   max-width: 100%;
 }
+
 .timeline::before {
   content: "";
   position: absolute;
@@ -300,12 +310,14 @@ section.card h2 {
   padding: 0;
   background: transparent;
 }
+
 .projects-title {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.4rem;
   color: var(--accent-2);
 }
+
 .projects-section h5 {
   text-align: center;
   justify-self: center;
@@ -329,7 +341,8 @@ footer {
 
   .photo {
     align-self: center;
-    order: 3;              /* comes after text */
+    order: 3;
+    /* comes after text */
     height: 13rem;
     width: 13rem;
     flex: none;
@@ -337,7 +350,8 @@ footer {
   }
 
   .photo img {
-    max-width: 13rem;      /* prevents huge face */
+    max-width: 13rem;
+    /* prevents huge face */
     margin: 0 auto;
   }
 }
