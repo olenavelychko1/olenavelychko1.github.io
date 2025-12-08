@@ -34,7 +34,9 @@ export const projects = [
     images: [
       "/img/blok 3/screenshot1.png",
       "/img/blok 3/screenshot2.png",
-      "/img/blok 3/video1.mp4"
+      "/img/blok 3/video1.mp4",
+      "/img/blok 3/video2.mp4",
+      "/img/blok 3/photo.jpg"
     ],
     description: `<div class="project-description">
               A web-based game called "The Lost City of Azarath," built with TypeScript, HTML5, CSS3, and Express.
@@ -49,7 +51,7 @@ export const projects = [
               implementing the arrow navigation component, designing around 60% of the UI, building most of the game
               rooms,
               and acting as the main bug fixer for the team. This project helped me significantly improve my TypeScript
-              and HTML skills,
+              and HTML skills, communication within a team setting,
               strengthened my problem-solving abilities, and deepened my passion for game development.
             </div>`
   },
