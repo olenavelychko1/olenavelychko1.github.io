@@ -39,9 +39,8 @@ const techBadgesHtml = computed(() => {
                     </div>
                     <p class="project-date">{{ date }}</p>
 
-                    <a v-if="link" :href="link" class="project-link" target="_blank" rel="noreferrer">View Project &
-                        Code Snippets on
-                        GitHub →</a>
+                    <a v-if="link" :href="link" class="project-link" target="_blank" rel="noreferrer">View Project
+                       on GitHub →</a>
 
                     <h6 style="margin-top: 1rem; color: var(--muted)">Technologies Used: </h6>
                     <div v-if="techBadgesHtml.length" class="project-tech">
