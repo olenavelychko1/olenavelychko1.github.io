@@ -59,9 +59,11 @@ export const projects = [
     // link: "#",
     technologies: ["html5", "css3", "typescript", "nodejs", "mysql", "vite", "figma", "gitlab", "vscode",],
     images: [
-      "/img/blok 4/screenshot2.png",
-      "/img/blok 4/screenshot1.png",
-      "/img/blok 4/screenshot3.png"
+      "/img/blok 2/screenshot1.png",
+      "/img/blok 2/screenshot2.png",
+      "/img/blok 2/screenshot3.png",
+      "/img/blok 2/screenshot4.png",
+      "/img/blok 2/screenshot5.png"
     ],
     description: `hh`
   },
@@ -71,9 +73,11 @@ export const projects = [
     // link: "#",
     technologies: ["html5", "css3", "typescript", "vite", "figma", "gitlab", "vscode",],
     images: [
-      "/img/blok 4/screenshot2.png",
-      "/img/blok 4/screenshot1.png",
-      "/img/blok 4/screenshot3.png"
+      "/img/blok 1/screenshot1.png",
+      "/img/blok 1/screenshot2.png",
+      "/img/blok 1/screenshot3.png",
+      "/img/blok 1/screenshot4.png",
+      "/img/blok 1/screenshot5.png"
     ],
     description: `hh`
   },
