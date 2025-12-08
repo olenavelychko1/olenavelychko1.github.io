@@ -14,6 +14,7 @@ onMounted(() => {
   const descriptionSection = document.querySelector(".description");
 
   const handleScroll = () => {
+    // ---- TOPBAR LOGIC ----
     const descriptionBottom = descriptionSection.getBoundingClientRect().bottom;
 
     // If we are ABOVE the end of the description section → always show
@@ -85,6 +86,9 @@ onMounted(() => {
               <li>Plans for future: to live and work in the Netherlands upon graduation, full integration into the
                 society</li>
             </ul>
+          </aside>
+          <aside class="photo">
+            <img src="./../public/img/me.png" alt="Photo of Olena Velychko"  />
           </aside>
         </div>
       </section>
@@ -202,12 +206,13 @@ main {
 
 .intro {
   display: flex;
-  gap: 1.1rem;
+  
   align-items: flex-start;
 }
 
 .intro .bio {
   flex: 1;
+  margin-right: 1.1rem;
 }
 
 .meta {
@@ -220,6 +225,40 @@ main {
   }
 }
 
+.photo {
+  display: flex;
+  flex: 0 0 200px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  height: auto;
+  position: relative;
+
+  img {
+    position: relative;
+    border-radius: 12px;
+    max-width: 100%;
+    z-index: 1;
+  }
+}
+/* the glow */
+.photo::before {
+  content: "";
+  position: absolute;
+  inset: -12px; /* how far the glow spreads */
+  border-radius: 18px;
+
+  background: radial-gradient(
+    circle at bottom,
+    #6be3b131,
+    transparent 70%
+  );
+
+  filter: blur(18px);
+  z-index: 0;
+  pointer-events: none;
+}
 
 /* ---------- Sections ---------- */
 section.card {
@@ -267,12 +306,39 @@ section.card h2 {
   font-size: 1.4rem;
   color: var(--accent-2);
 }
-
+.projects-section h5 {
+  text-align: center;
+  justify-self: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  max-width: 1100px;
+}
 
 
 footer {
   text-align: center;
   color: var(--muted);
   margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .intro {
+    flex-direction: column;
+  }
+
+  .photo {
+    align-self: center;
+    order: 3;              /* comes after text */
+    height: 13rem;
+    width: 13rem;
+    flex: none;
+    margin-top: 1rem;
+  }
+
+  .photo img {
+    max-width: 13rem;      /* prevents huge face */
+    margin: 0 auto;
+  }
 }
 </style>
